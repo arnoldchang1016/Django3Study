@@ -33,16 +33,15 @@ def dice2(request):
 	no3 = random.randint(1, 6) # added by Arnold
 	return render(request, "dice2.html", locals())
 
+times = 0 # declare global variable 
 
 def dice3(request):
+	global times
 	times = times + 1
-    # local_times = times
-    username = 'David'
+	local_times = times
+	username1 = "David"
 	no1 = random.randint(1, 6) # added by Arnold
 	no2 = random.randint(1, 6) # added by Arnold
 	no3 = random.randint(1, 6) # added by Arnold
 	return render(request, "dice3.html", locals())
 
-
-global times # declare global variable 
-times = 0
