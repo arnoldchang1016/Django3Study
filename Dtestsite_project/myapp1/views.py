@@ -45,3 +45,11 @@ def dice3(request):
 	no3 = random.randint(1, 6) # added by Arnold
 	return render(request, "dice3.html", locals())
 
+def filter(request):
+	value = 4
+	list1 = [1, 2, 3]
+	pw = '芝麻開門'
+
+	html = '<h3> Hello </h3>'
+	value2 = True
+	return render(request, 'filter.html', locals())
