@@ -6,6 +6,8 @@ from datetime import datetime
 
 import random
 
+from myapp1.models import student # added by Arnold on 2020-09-17
+
 # Create your views here.
 
 def sayhello(request): # added by Arnold
@@ -53,3 +55,21 @@ def filter(request):
 	html = '<h3> Hello </h3>'
 	value2 = True
 	return render(request, 'filter.html', locals())
+
+def listone(request): #added by Arnold on 2020-09-17
+	try:
+		unit = student.objects.get(cName='JessieCheng')
+	except:
+		errormessage = '讀取錯誤'
+
+	return render(request, "listone.html", locals())
+
+def listall(request): #added by Arnold on 2020-09-17
+	try:
+		students = student.objects.all().order_by('id')
+	except:
+		errormessage = '讀取錯誤'
+	return render(request, "listall.html", locals())
+
+def index(request): #added by Arnold on 2020-09-17
+	return render(request, "index.html", locals())
