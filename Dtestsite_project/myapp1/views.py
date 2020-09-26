@@ -7,6 +7,7 @@ from datetime import datetime
 import random
 
 from myapp1.models import student # added by Arnold on 2020-09-17
+from django.shortcuts import redirect # added by Arnold on 2020-09-26
 
 # Create your views here.
 
@@ -69,7 +70,37 @@ def listall(request): #added by Arnold on 2020-09-17
 		students = student.objects.all().order_by('id')
 	except:
 		errormessage = '讀取錯誤'
+	
 	return render(request, "listall.html", locals())
 
 def index(request): #added by Arnold on 2020-09-17
+	try:
+		students = student.objects.all().order_by('cName')
+	except:
+		errormessage = '讀取錯誤'
+	
 	return render(request, "index.html", locals())
+
+def post(request): # added by Arnold on 2020-09-26
+	if request.method == 'POST':
+		mess = request.POST['username']
+	else:
+		mess = '標單資料尚未送出!!!'
+
+	return render(request, "post.html", locals())
+
+def post1(request): # added by Arnold on 2020-09-26
+	if request.method == "POST":
+		cName = request.POST['cName']
+		cSex = request.POST['cSex']
+		cBirthday = request.POST['cBirthday']
+		cEmail = request.POST['cEmail']
+		cPhone = request.POST['cPhone']
+		cAddr = request.POST['cAddr']
+		unit = student.objects.create(cName=cName, cSex=cSex, cBirthday=cBirthday, cEmail=cEmail, cPhone=cPhone, cAddr=cAddr)
+		unit.save() # write into database
+		return redirect('/index/')
+	else:
+		message = '請輸入資料 (資料不做驗證)'
+
+	return render(request, "post1.html", locals())

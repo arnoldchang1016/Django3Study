@@ -19,6 +19,7 @@ from django.urls import path
 from myapp1.views import sayhello, hello, hello3, hello5 # added by Arnold
 from myapp1.views import dice ,dice2, dice3, filter #, show, filter # added by Arnold
 from myapp1.views import listone, listall, index # added by Arnold 2020-09-17
+from myapp1.views import post, post1 # added by Arnold on 2020-09-26
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,7 +34,9 @@ urlpatterns = [
     path('filter/', filter), # added by Arnold 2020-09-17
     path('listone/', listone), # added by Arnold 2020-09-17
     path('listall/', listall), # added by Arnold 2020-09-17
-    path('index/', index) # added by Arnold 2020-09-17
+    path('index/', index), # added by Arnold 2020-09-17
+    path('post/', post), # added by Arnold on 2020-09-26
+    path('post1/', post1), # added by Arnold on 2020-09-26
 #    path('show/', show), # added by Arnold
 #    path('filter/', filter), # added by Arnold
 
