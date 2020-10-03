@@ -14,12 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
 from myapp1.views import sayhello, hello, hello3, hello5 # added by Arnold
 from myapp1.views import dice ,dice2, dice3, filter #, show, filter # added by Arnold
 from myapp1.views import listone, listall, index # added by Arnold 2020-09-17
 from myapp1.views import post, post1 # added by Arnold on 2020-09-26
+from myapp1.views import postform # added by Arnold on 2020-09-27
+from myapp1.views import post2, delete # added by Arnold on 2020-09-29
+from myapp1.views import edit, edit2 # added by Arnold on 2020-10-03
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,6 +40,14 @@ urlpatterns = [
     path('index/', index), # added by Arnold 2020-09-17
     path('post/', post), # added by Arnold on 2020-09-26
     path('post1/', post1), # added by Arnold on 2020-09-26
+    path('postform/', postform), # added by Arnold on 2020-09-27
+    path('post2/', post2), # added by Arnold on 2020-09-29
+    path('delete/', delete), # added by Arnold on 2020-09-29
+    re_path(r'delete/(\d+)/$',delete),
+    path('edit/', edit), # added by Arnold on 2020-10-03
+    re_path(r'edit/(\d+)/$', edit), # added by Arnold on 2020-10-03
+    re_path(r'edit/(\d+)/(\w+)$', edit), # added by Arnold on 2020-10-03
+    re_path(r'edit2/(\d+)/(\w+)$', edit2), # added by Arnold on 2020-10-03
 #    path('show/', show), # added by Arnold
 #    path('filter/', filter), # added by Arnold
 
