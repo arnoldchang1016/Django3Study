@@ -9,8 +9,16 @@ import random
 from myapp1.models import student # added by Arnold on 2020-09-17
 from django.shortcuts import redirect # added by Arnold on 2020-09-26
 from myapp1.form import PostForm # added by Arnold on 2020-09-27 
+from django.contrib import auth # added by Arnold on 2020-10-04
+from django.contrib.auth import authenticate # added by Arnold on 2020-10-04
+from django.contrib.auth.models import User # added by Arnold on 2020-10-04
+
 
 # Create your views here.
+
+times = 0 # declare global variable 
+#Gloabl_User = None # added by Arnold on 2020-10-04
+
 
 def sayhello(request): # added by Arnold
 	return HttpResponse("<h1> Hello ... </h1>")
@@ -36,8 +44,6 @@ def dice2(request):
 	no2 = random.randint(1, 6) # added by Arnold
 	no3 = random.randint(1, 6) # added by Arnold
 	return render(request, "dice2.html", locals())
-
-times = 0 # declare global variable 
 
 def dice3(request):
 	global times
@@ -75,6 +81,9 @@ def listall(request): #added by Arnold on 2020-09-17
 	return render(request, "listall.html", locals())
 
 def index(request): #added by Arnold on 2020-09-17
+	now = datetime.now()
+	# global Gloabl_User
+	#username = Gloabl_User
 	try:
 		students = student.objects.all().order_by('cName')
 	except:
@@ -189,3 +198,23 @@ def edit2(request, id=None, mode=None): # added by Arnold on 2020-10-03
 		unit.save() # write into database
 		message = '已修改...'
 		return redirect('/index/')		
+
+def login(request): # added by Arnold on 2020-10-04
+	if request.method == "POST":
+		username = request.POST['username']
+		password = request.POST['password']
+		user = auth.authenticate(username=username, password=password)
+		if user is not None:
+			if user.is_active:
+				auth.login(request, user)
+				return redirect('/index/')
+				message = '登入成功!'
+			else:
+				message = '帳號尚未啟用!'
+		else:
+			message = '登入失敗!'
+	return render(request, "login.html", locals())
+
+def logout(request): # added by Arnold on 2020-10-04
+	auth.logout(request)
+	return redirect('/index/')

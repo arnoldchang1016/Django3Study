@@ -23,6 +23,7 @@ from myapp1.views import post, post1 # added by Arnold on 2020-09-26
 from myapp1.views import postform # added by Arnold on 2020-09-27
 from myapp1.views import post2, delete # added by Arnold on 2020-09-29
 from myapp1.views import edit, edit2 # added by Arnold on 2020-10-03
+from myapp1.views import login, logout # added by Arnold on 2020-10-04
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,6 +49,8 @@ urlpatterns = [
     re_path(r'edit/(\d+)/$', edit), # added by Arnold on 2020-10-03
     re_path(r'edit/(\d+)/(\w+)$', edit), # added by Arnold on 2020-10-03
     re_path(r'edit2/(\d+)/(\w+)$', edit2), # added by Arnold on 2020-10-03
+    path('login/', login), # added by Arnold on 2020-10-04
+    path('logout/', login), # added by Arnold on 2020-10-04
 #    path('show/', show), # added by Arnold
 #    path('filter/', filter), # added by Arnold
 

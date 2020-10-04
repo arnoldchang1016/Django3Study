@@ -1,10 +1,26 @@
 <!-- base.html -->
 <!DOCTYPE html>
 <html>
+
 	<head>
+		<meta charset='utf8'>
+		{% load static %}
+		<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
 		{% block title %} {% endblock %}
 	</head>
 	<body>
+		<div id="home">
+			<img src="{% static 'images/ball.jpg' %}" alt="歡迎光臨" width="32" height="32" />
+			<h2> 現在時刻: {{now}} </h2>
+			{% if request.user.is_authenticated %}
+				<span class="info"> 歡迎光臨: {{user.username}}, Last_Login: {{user.last_login}} </span> 
+				<span class="info"> <a href="/logout/"> 登出 </a> </span> 
+			{% else %}
+				<span class="info"> 您尚未登入喔！ </span> 
+				<a href="/login/"> 登入 </a>
+			{% endif %}
+			<span style="color=:blue"> {{message}} </span> 
+		</div>
 		{% block content %} {% endblock %}
 	</body>
 </html>
