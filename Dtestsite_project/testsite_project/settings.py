@@ -76,10 +76,21 @@ WSGI_APPLICATION = 'testsite_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',  #PostgreSQL
+        'NAME': 'DevDB', #資料庫名稱
+        'USER': 'DevUser',  #資料庫帳號
+        'PASSWORD': 'dev@2020',  #資料庫密碼
+        'HOST': 'localhost',  #Server(伺服器)位址
+        'PORT': '5432'  #PostgreSQL Port號
     }
 }
 
