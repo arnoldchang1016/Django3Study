@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from django.conf.urls import include # added by Arnold on 2020-10-05
 
 from myapp1.views import sayhello, hello, hello3, hello5 # added by Arnold
 from myapp1.views import dice ,dice2, dice3, filter #, show, filter # added by Arnold
@@ -51,7 +52,5 @@ urlpatterns = [
     re_path(r'edit2/(\d+)/(\w+)$', edit2), # added by Arnold on 2020-10-03
     path('login/', login), # added by Arnold on 2020-10-04
     path('logout/', login), # added by Arnold on 2020-10-04
-#    path('show/', show), # added by Arnold
-#    path('filter/', filter), # added by Arnold
-
+    path('captcha/', include('captcha.urls')), # added by Arnold on 2020-10-05
 ]

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp1', #added by Arnold
+    'captcha', # added by Arnold on 2020-10-05
 ]
 
 MIDDLEWARE = [
@@ -83,7 +84,8 @@ WSGI_APPLICATION = 'testsite_project.wsgi.application'
 #    }
 #}
 
-DATABASES = {
+# added by Arnold on 2020-10-05
+DATABASES = { 
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  #PostgreSQL
         'NAME': 'DevDB', #資料庫名稱
