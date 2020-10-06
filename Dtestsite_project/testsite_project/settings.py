@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp1', #added by Arnold
-    'captcha', # added by Arnold on 2020-10-05
+#    'captcha', # added by Arnold on 2020-10-05
 ]
 
 MIDDLEWARE = [
